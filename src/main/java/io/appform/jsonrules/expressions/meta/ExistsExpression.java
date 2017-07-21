@@ -25,6 +25,8 @@ import io.appform.jsonrules.expressions.preoperation.PreOperation;
 import io.appform.jsonrules.utils.ComparisonUtils;
 import lombok.Builder;
 
+import java.util.List;
+
 /**
  * Check if a field exists
  */
@@ -34,8 +36,8 @@ public class ExistsExpression extends JsonPathBasedExpression {
     }
 
     @Builder
-    public ExistsExpression(String path, PreOperation<?> preoperation) {
-        super(ExpressionType.exists, path, false, preoperation);
+    public ExistsExpression(String path, List<PreOperation<?>> preoperations) {
+        super(ExpressionType.exists, path, false, preoperations);
     }
 
     @Override

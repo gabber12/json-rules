@@ -28,6 +28,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * Compares objects
  */
@@ -42,13 +44,13 @@ public class EqualsExpression extends JsonPathBasedExpression {
     }
 
     @Builder
-    public EqualsExpression(String path, Object value, boolean defaultResult, PreOperation<?> preoperation) {
-        super(ExpressionType.equals, path, defaultResult, preoperation);
+    public EqualsExpression(String path, Object value, boolean defaultResult, List<PreOperation<?>> preoperations) {
+        super(ExpressionType.equals, path, defaultResult, preoperations);
         this.value = value;
     }
 
-    public EqualsExpression(String path, Object value, PreOperation<?> preoperation) {
-        this(path, value,false, preoperation);
+    public EqualsExpression(String path, Object value, List<PreOperation<?>> preoperations) {
+        this(path, value,false, preoperations);
     }
 
     @Override

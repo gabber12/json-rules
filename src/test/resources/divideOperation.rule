@@ -5,13 +5,13 @@
             "type": "equals",
             "path": "/value",
             "value": 4,
-            "preoperation": {"operation" : "divide", "operand" : 2}
+            "preoperations": [{"operation" : "divide", "operand" : 2}]
         },
         {
             "type": "less_than",
             "path": "/value",
             "value": 5,
-            "preoperation": {"operation" : "divide", "operand" : 2}
+            "preoperations": [{"operation" : "divide", "operand" : 2}]
         }
     ]
 }

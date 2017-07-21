@@ -22,6 +22,8 @@ import io.appform.jsonrules.ExpressionType;
 import io.appform.jsonrules.expressions.preoperation.PreOperation;
 import lombok.Builder;
 
+import java.util.List;
+
 /**
  * Created by santanu on 15/9/16.
  */
@@ -31,12 +33,12 @@ public class LessThanEqualsExpression extends NumericJsonPathBasedExpression {
     }
 
     @Builder
-    public LessThanEqualsExpression(String path, Number value, boolean defaultResult, PreOperation<?> preoperation) {
-        super(ExpressionType.less_than_equals, path, value, defaultResult, preoperation);
+    public LessThanEqualsExpression(String path, Number value, boolean defaultResult, List<PreOperation<?>> preoperations) {
+        super(ExpressionType.less_than_equals, path, value, defaultResult, preoperations);
     }
 
-    public LessThanEqualsExpression(String path, Number value, PreOperation<?> preoperation) {
-        this(path, value, false, preoperation);
+    public LessThanEqualsExpression(String path, Number value, List<PreOperation<?>> preoperations) {
+        this(path, value, false, preoperations);
     }
 
     protected boolean evaluate(ExpressionEvaluationContext context, int comparisonResult) {

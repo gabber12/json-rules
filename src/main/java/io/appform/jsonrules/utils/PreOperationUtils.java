@@ -17,11 +17,20 @@
 
 package io.appform.jsonrules.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ext.DOMDeserializer;
+import com.fasterxml.jackson.databind.node.BaseJsonNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
+import io.appform.jsonrules.expressions.preoperation.PreOperation;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoField;
+import java.util.List;
 
 public class PreOperationUtils {
 
@@ -108,6 +117,14 @@ public class PreOperationUtils {
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Operand doesnot represent a valid date");
 		}
+	}
+
+	public static final JsonNode evaluate(List<PreOperation<?>> preOperations, JsonNode jsonNode) {
+		if (null == preOperations || preOperations.isEmpty()) {
+			return jsonNode;
+		}
+		PreOperation operation = preOperations.get(0);
+		return evaluate(preOperations.subList(1, preOperations.size()), (new ObjectMapper()).convertValue(operation.compute(jsonNode), JsonNode.class));
 	}
 	
 }

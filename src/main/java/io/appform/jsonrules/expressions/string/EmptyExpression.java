@@ -24,6 +24,8 @@ import io.appform.jsonrules.expressions.JsonPathBasedExpression;
 import io.appform.jsonrules.expressions.preoperation.PreOperation;
 import lombok.Builder;
 
+import java.util.List;
+
 /**
  * Check is string is empty or null
  */
@@ -33,8 +35,8 @@ public class EmptyExpression extends JsonPathBasedExpression {
     }
 
     @Builder
-    public EmptyExpression(String path, Boolean defaultResult, PreOperation<?> preoperation) {
-        super(ExpressionType.empty, path, defaultResult, preoperation);
+    public EmptyExpression(String path, Boolean defaultResult, List<PreOperation<?>> preoperations) {
+        super(ExpressionType.empty, path, defaultResult, preoperations);
     }
 
     @Override

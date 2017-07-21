@@ -5,13 +5,13 @@
             "type": "equals",
             "path": "/value",
             "value": 11,
-            "preoperation": {"operation" : "add", "operand" : 3}
+            "preoperations": [{"operation" : "add", "operand" : 3}]
         },
         {
             "type": "equals",
             "path": "/value",
             "value": 30,
-            "preoperation": {"operation" : "add", "operand" : 22}
+            "preoperations": [{"operation" : "add", "operand" : 22}]
         }
     ]
 }

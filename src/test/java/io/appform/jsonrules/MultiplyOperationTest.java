@@ -18,6 +18,7 @@
 package io.appform.jsonrules;
 
 import java.time.Instant;
+import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,26 +62,26 @@ public class MultiplyOperationTest {
     public void testWithEqualsExpression() throws Exception {
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
                 .value(40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-2).build()))
                 .value(-40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(0).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(0).build()))
                 .value(0)
                 .build()
                 .evaluate(context));
         try {
         	EqualsExpression.builder()
             .path("/abcd")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -92,7 +93,7 @@ public class MultiplyOperationTest {
         try {
         	EqualsExpression.builder()
             .path("/kid")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -106,19 +107,19 @@ public class MultiplyOperationTest {
     public void testWithNotEqualsExpression() throws Exception {
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
                 .value(40)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-2).build()))
                 .value(-40)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(0).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(0).build()))
                 .value(0)
                 .build()
                 .evaluate(context));
@@ -126,7 +127,7 @@ public class MultiplyOperationTest {
         try {
         	NotEqualsExpression.builder()
             .path("/abcd")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -138,7 +139,7 @@ public class MultiplyOperationTest {
         try {
         	NotEqualsExpression.builder()
             .path("/kid")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -152,19 +153,19 @@ public class MultiplyOperationTest {
     public void testWithInExpression() throws Exception {
         Assert.assertTrue(InExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
                 .value(40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-2).build()))
                 .value(-40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(0).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(0).build()))
                 .value(0)
                 .build()
                 .evaluate(context));
@@ -172,7 +173,7 @@ public class MultiplyOperationTest {
         try {
         	InExpression.builder()
             .path("/abcd")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -184,7 +185,7 @@ public class MultiplyOperationTest {
         try {
         	InExpression.builder()
             .path("/kid")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -199,19 +200,19 @@ public class MultiplyOperationTest {
 
         Assert.assertFalse(NotInExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
                 .value(40)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-2).build()))
                 .value(-40)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(0).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(0).build()))
                 .value(0)
                 .build()
                 .evaluate(context));
@@ -219,7 +220,7 @@ public class MultiplyOperationTest {
         try {
         	NotInExpression.builder()
             .path("/abcd")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -231,7 +232,7 @@ public class MultiplyOperationTest {
         try {
         	NotInExpression.builder()
             .path("/kid")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -245,19 +246,19 @@ public class MultiplyOperationTest {
     public void testWithNumbericExpression() throws Exception {
         Assert.assertTrue(GreaterThanEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
                 .value(40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(LessThanEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-2).build()))
                 .value(-40)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(LessThanEqualsExpression.builder()
                 .path("/value")
-                .preoperation(MultiplyOperation.builder().operand(0).build())
+                .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(0).build()))
                 .value(0)
                 .build()
                 .evaluate(context));
@@ -265,7 +266,7 @@ public class MultiplyOperationTest {
         try {
         	GreaterThanExpression.builder()
             .path("/abcd")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -277,7 +278,7 @@ public class MultiplyOperationTest {
         try {
         	GreaterThanExpression.builder()
             .path("/kid")
-            .preoperation(MultiplyOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -303,12 +304,12 @@ public class MultiplyOperationTest {
                                 .child(LessThanExpression.builder()
                                         .path("/value")
                                         .value(11)
-                                        .preoperation(MultiplyOperation.builder().operand(5).build())
+                                        .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(5).build()))
                                         .build())
                                 .child(GreaterThanExpression.builder()
                                         .path("/value")
                                         .value(30)
-                                        .preoperation(MultiplyOperation.builder().operand(-5).build())
+                                        .preoperations(Collections.singletonList(MultiplyOperation.builder().operand(-5).build()))
                                         .build())
                                 .build())
                 .build());
@@ -316,7 +317,7 @@ public class MultiplyOperationTest {
         final String ruleRep = rule.representation(mapper);
 
         System.out.println(ruleRep);
-        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/value\",\"preoperation\":{\"operation\":\"multiply\",\"operand\":5},\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/value\",\"preoperation\":{\"operation\":\"multiply\",\"operand\":-5},\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
+        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/value\",\"preoperations\":[{\"operation\":\"multiply\",\"operand\":5}],\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/value\",\"preoperations\":[{\"operation\":\"multiply\",\"operand\":-5}],\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
     }
     
 }

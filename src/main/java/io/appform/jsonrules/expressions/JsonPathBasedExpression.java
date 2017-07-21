@@ -24,10 +24,12 @@ import io.appform.jsonrules.Expression;
 import io.appform.jsonrules.ExpressionEvaluationContext;
 import io.appform.jsonrules.ExpressionType;
 import io.appform.jsonrules.expressions.preoperation.PreOperation;
+import io.appform.jsonrules.utils.PreOperationUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import lombok.val;
+
+import java.util.List;
 
 /**
  * All expressions that evaluate a json path uses this.
@@ -37,7 +39,7 @@ import lombok.val;
 @ToString(callSuper = true)
 public abstract class JsonPathBasedExpression extends Expression {
     private String path;
-    private PreOperation<?> preoperation;
+    private List<PreOperation<?>> preoperations;
     private static final ObjectMapper mapper = new ObjectMapper();
     private boolean defaultResult;
 
@@ -45,10 +47,10 @@ public abstract class JsonPathBasedExpression extends Expression {
         super(type);
     }
 
-    protected JsonPathBasedExpression(ExpressionType type, String path, boolean defaultResult, PreOperation<?> preoperation) {
+    protected JsonPathBasedExpression(ExpressionType type, String path, boolean defaultResult, List<PreOperation<?>> preoperations) {
         this(type);
         this.path = path;
-        this.preoperation = preoperation;
+        this.preoperations = preoperations;
         this.defaultResult = defaultResult;
     }
 
@@ -56,10 +58,7 @@ public abstract class JsonPathBasedExpression extends Expression {
     public final boolean evaluate(ExpressionEvaluationContext context) {
         JsonNode evaluatedNode = context.getNode().at(path);
 
-        if (preoperation != null) {
-        	val computedValue = preoperation.compute(evaluatedNode);
-        	evaluatedNode = mapper.valueToTree(computedValue);
-        }
+        evaluatedNode = PreOperationUtils.evaluate(preoperations,evaluatedNode);
 
         if (evaluatedNode.isMissingNode()) {
             return defaultResult;

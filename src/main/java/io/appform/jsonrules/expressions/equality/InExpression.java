@@ -41,13 +41,13 @@ public class InExpression extends JsonPathBasedExpression {
     }
 
     @Builder
-    public InExpression(String path, @Singular List<Object> values, boolean defaultResult, PreOperation<?> preoperation) {
-        super(ExpressionType.in, path, defaultResult, preoperation);
+    public InExpression(String path, @Singular List<Object> values, boolean defaultResult, List<PreOperation<?>> preoperations) {
+        super(ExpressionType.in, path, defaultResult, preoperations);
         this.values = values;
     }
 
-    public InExpression(String path, List<Object> values, PreOperation<?> preoperation) {
-        this(path, values, false, preoperation);
+    public InExpression(String path, List<Object> values, List<PreOperation<?>> preoperations) {
+        this(path, values, false, preoperations);
     }
 
     @Override

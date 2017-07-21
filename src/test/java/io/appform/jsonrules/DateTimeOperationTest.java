@@ -20,6 +20,7 @@ package io.appform.jsonrules;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoField;
+import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -62,49 +63,49 @@ public class DateTimeOperationTest {
 		// DateTimeOperation test cases
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_WEEK))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MONTH_OF_YEAR))
                 .build()
                 .evaluate(context));
@@ -112,13 +113,13 @@ public class DateTimeOperationTest {
         // Would only match with the specified ZoneOffSet
         Assert.assertFalse(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -126,13 +127,13 @@ public class DateTimeOperationTest {
         // Default ZoneOffSet considered is UTC
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -140,7 +141,7 @@ public class DateTimeOperationTest {
         try {
         	EqualsExpression.builder()
 	            .path("/epochTime")
-	            .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+	            .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
 	            .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
 	            .build()
 	            .evaluate(context);
@@ -155,49 +156,49 @@ public class DateTimeOperationTest {
 		// DateTimeOperation test cases
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_WEEK))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MONTH_OF_YEAR))
                 .build()
                 .evaluate(context));
@@ -205,13 +206,13 @@ public class DateTimeOperationTest {
         // Would only match with the specified ZoneOffSet
         Assert.assertTrue(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -219,13 +220,13 @@ public class DateTimeOperationTest {
         // Default ZoneOffSet considered is UTC
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -233,7 +234,7 @@ public class DateTimeOperationTest {
         try {
         	NotEqualsExpression.builder()
 	            .path("/epochTime")
-	            .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+	            .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
 	            .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
 	            .build()
 	            .evaluate(context);
@@ -249,49 +250,49 @@ public class DateTimeOperationTest {
 		// DateTimeOperation test cases
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_WEEK))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MONTH_OF_YEAR))
                 .build()
                 .evaluate(context));
@@ -299,13 +300,13 @@ public class DateTimeOperationTest {
         // Would only match with the specified ZoneOffSet
         Assert.assertFalse(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -313,13 +314,13 @@ public class DateTimeOperationTest {
         // Default ZoneOffSet considered is UTC
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -327,7 +328,7 @@ public class DateTimeOperationTest {
         try {
         	InExpression.builder()
 	            .path("/epochTime")
-	            .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+	            .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
 	            .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
 	            .build()
 	            .evaluate(context);
@@ -343,49 +344,49 @@ public class DateTimeOperationTest {
 		// DateTimeOperation test cases
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_week").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_WEEK))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("day_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.DAY_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_month").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_MONTH))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.ALIGNED_WEEK_OF_YEAR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("month_of_year").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.of("+05:30")).get(ChronoField.MONTH_OF_YEAR))
                 .build()
                 .evaluate(context));
@@ -393,13 +394,13 @@ public class DateTimeOperationTest {
         // Would only match with the specified ZoneOffSet
         Assert.assertTrue(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertTrue(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").zoneOffSet("+05:30").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -407,13 +408,13 @@ public class DateTimeOperationTest {
         // Default ZoneOffSet considered is UTC
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/dateTime")
-                .preoperation(DateTimeOperation.builder().operand("hour_of_day").build())
+                .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").build()))
                 .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.HOUR_OF_DAY))
                 .build()
                 .evaluate(context));
@@ -421,7 +422,7 @@ public class DateTimeOperationTest {
         try {
         	NotInExpression.builder()
 	            .path("/epochTime")
-	            .preoperation(DateTimeOperation.builder().operand("minute_of_hour").build())
+	            .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("minute_of_hour").build()))
 	            .value(dateTime.atOffset(ZoneOffset.UTC).get(ChronoField.MINUTE_OF_HOUR))
 	            .build()
 	            .evaluate(context);
@@ -447,12 +448,12 @@ public class DateTimeOperationTest {
                                 .child(LessThanExpression.builder()
                                         .path("/unixTime")
                                         .value(11)
-                                        .preoperation(DateTimeOperation.builder().operand("hour_of_day").build())
+                                        .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("hour_of_day").build()))
                                         .build())
                                 .child(GreaterThanExpression.builder()
                                         .path("/unixTime")
                                         .value(30)
-                                        .preoperation(DateTimeOperation.builder().operand("week_of_month").build())
+                                        .preoperations(Collections.singletonList(DateTimeOperation.builder().operand("week_of_month").build()))
                                         .build())
                                 .build())
                 .build());
@@ -460,7 +461,7 @@ public class DateTimeOperationTest {
         final String ruleRep = rule.representation(mapper);
 
         System.out.println(ruleRep);
-        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/unixTime\",\"preoperation\":{\"operation\":\"date_time\",\"operand\":\"hour_of_day\"},\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/unixTime\",\"preoperation\":{\"operation\":\"date_time\",\"operand\":\"week_of_month\"},\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
+        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/unixTime\",\"preoperations\":[{\"operation\":\"date_time\",\"operand\":\"hour_of_day\"}],\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/unixTime\",\"preoperations\":[{\"operation\":\"date_time\",\"operand\":\"week_of_month\"}],\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
     }
     
 }

@@ -5,13 +5,13 @@
             "type": "equals",
             "path": "/value",
             "value": 11,
-            "preoperation": {"operation" : "subtract", "operand" : -3}
+            "preoperations": [{"operation" : "subtract", "operand" : -3}]
         },
         {
             "type": "less_than",
             "path": "/value",
             "value": 5,
-            "preoperation": {"operation" : "subtract", "operand" : 4}
+            "preoperations": [{"operation" : "subtract", "operand" : 4}]
         }
     ]
 }

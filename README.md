@@ -145,11 +145,11 @@ Pre-operations are pre-evaluation mutations that can be applied to payload.
     {
         "type": "in",
         "path": "/time",
-        "preoperation": {
+        "preoperations": [{
           "operation": "epoch",
           "operand": "week_of_month",
           "zoneOffSet": "+05:30"
-        },
+        }],
         "values": [
           2,
           4

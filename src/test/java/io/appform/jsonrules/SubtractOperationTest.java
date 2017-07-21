@@ -18,6 +18,7 @@
 package io.appform.jsonrules;
 
 import java.time.Instant;
+import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -59,13 +60,13 @@ public class SubtractOperationTest {
     public void testWithEqualsExpression() throws Exception {
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
                 .value(18)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(EqualsExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-2).build()))
                 .value(22)
                 .build()
                 .evaluate(context));
@@ -73,7 +74,7 @@ public class SubtractOperationTest {
         try {
         	EqualsExpression.builder()
             .path("/abcd")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -85,7 +86,7 @@ public class SubtractOperationTest {
         try {
         	EqualsExpression.builder()
             .path("/kid")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -99,20 +100,20 @@ public class SubtractOperationTest {
     public void testWithNotEqualsExpression() throws Exception {
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
                 .value(18)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotEqualsExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-2).build()))
                 .value(22)
                 .build()
                 .evaluate(context));
         try {
         	NotEqualsExpression.builder()
             .path("/abcd")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -124,7 +125,7 @@ public class SubtractOperationTest {
         try {
         	NotEqualsExpression.builder()
             .path("/kid")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -138,13 +139,13 @@ public class SubtractOperationTest {
     public void testWithInExpression() throws Exception {
         Assert.assertTrue(InExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
                 .value(18)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(InExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-2).build()))
                 .value(22)
                 .build()
                 .evaluate(context));
@@ -152,7 +153,7 @@ public class SubtractOperationTest {
         try {
         	InExpression.builder()
             .path("/abcd")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -164,7 +165,7 @@ public class SubtractOperationTest {
         try {
         	InExpression.builder()
             .path("/kid")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -178,13 +179,13 @@ public class SubtractOperationTest {
     public void testWithNotInExpression() throws Exception {
         Assert.assertFalse(NotInExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
                 .value(18)
                 .build()
                 .evaluate(context));
         Assert.assertFalse(NotInExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-2).build()))
                 .value(22)
                 .build()
                 .evaluate(context));
@@ -192,7 +193,7 @@ public class SubtractOperationTest {
         try {
         	NotInExpression.builder()
             .path("/abcd")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -204,7 +205,7 @@ public class SubtractOperationTest {
         try {
         	NotInExpression.builder()
             .path("/kid")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -218,13 +219,13 @@ public class SubtractOperationTest {
     public void testWithNumbericExpression() throws Exception {
         Assert.assertTrue(LessThanExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
                 .value(20)
                 .build()
                 .evaluate(context));
         Assert.assertTrue(GreaterThanExpression.builder()
                 .path("/value")
-                .preoperation(SubtractOperation.builder().operand(-2).build())
+                .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-2).build()))
                 .value(20)
                 .build()
                 .evaluate(context));
@@ -232,7 +233,7 @@ public class SubtractOperationTest {
         try {
         	GreaterThanExpression.builder()
             .path("/abcd")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -244,7 +245,7 @@ public class SubtractOperationTest {
         try {
         	GreaterThanExpression.builder()
             .path("/kid")
-            .preoperation(SubtractOperation.builder().operand(2).build())
+            .preoperations(Collections.singletonList(SubtractOperation.builder().operand(2).build()))
             .value(20)
             .build()
             .evaluate(context);
@@ -270,12 +271,12 @@ public class SubtractOperationTest {
                                 .child(LessThanExpression.builder()
                                         .path("/value")
                                         .value(11)
-                                        .preoperation(SubtractOperation.builder().operand(5).build())
+                                        .preoperations(Collections.singletonList(SubtractOperation.builder().operand(5).build()))
                                         .build())
                                 .child(GreaterThanExpression.builder()
                                         .path("/value")
                                         .value(30)
-                                        .preoperation(SubtractOperation.builder().operand(-5).build())
+                                        .preoperations(Collections.singletonList(SubtractOperation.builder().operand(-5).build()))
                                         .build())
                                 .build())
                 .build());
@@ -283,7 +284,7 @@ public class SubtractOperationTest {
         final String ruleRep = rule.representation(mapper);
 
         System.out.println(ruleRep);
-        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/value\",\"preoperation\":{\"operation\":\"subtract\",\"operand\":5},\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/value\",\"preoperation\":{\"operation\":\"subtract\",\"operand\":-5},\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
+        Assert.assertEquals("{\"type\":\"not\",\"children\":[{\"type\":\"or\",\"children\":[{\"type\":\"less_than\",\"path\":\"/value\",\"preoperations\":[{\"operation\":\"subtract\",\"operand\":5}],\"defaultResult\":false,\"value\":11},{\"type\":\"greater_than\",\"path\":\"/value\",\"preoperations\":[{\"operation\":\"subtract\",\"operand\":-5}],\"defaultResult\":false,\"value\":30}]}]}", ruleRep);
     }
     
 
