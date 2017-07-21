@@ -1,4 +1,7 @@
+# Json-Rules
+
 JSON serializable rules to match Jackson JsonNodes using JSON Pointers.
+[![Build Status](https://travis-ci.org/gabber12/json-rules.svg?branch=master)](https://travis-ci.org/gabber12/json-rules)
 
 ###### Rule
 ```json
